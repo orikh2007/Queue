@@ -95,8 +95,8 @@ public class funcies {
 
         Queue<Integer> w = copy(q);
         int dif, prev, first = w.remove();
-        if (w.isEmpty()) return true; // Single element is an arithmetic series.
-        int second = w.remove(); // Corrected to remove the second element
+        if (w.isEmpty()) return true;
+        int second = w.remove();
         dif = second - first;
         prev = second;
 
