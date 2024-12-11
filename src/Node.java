@@ -32,4 +32,9 @@ public class Node<T> {
     public boolean hasNext() {
         return(this.next!=null);
     }
+
+    @Override
+    public String toString() {
+        return this.value + "--> " + this.next;
+    }
 }

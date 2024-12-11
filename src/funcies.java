@@ -69,17 +69,94 @@ public class funcies {
         return c;
     }
 
+    public static void threeInARow(Queue<Character> q)
+    {
+        char c;
+        int count = 0;
+        Queue<Character> w = new Queue<>();
+        while(!q.isEmpty())
+        {
+            c = q.head();
+            while(q.remove()==c)
+                count++;
+            if(count>=3)
+            {
+                for(int i = 0; i<count; i++)
+                    w.insert(c);
+            }
+            count=0;
+        }
+        spilledOn(w, q);
+    }
+
+    public static Boolean mathSeries(Queue<Integer> q)
+    {
+                if (q.isEmpty() || q.head() == null) return true;
+
+        Queue<Integer> w = copy(q);
+        int dif, prev, first = w.remove();
+        if (w.isEmpty()) return true; // Single element is an arithmetic series.
+        int second = w.remove(); // Corrected to remove the second element
+        dif = second - first;
+        prev = second;
+
+        while (!w.isEmpty()) {
+            int current = w.remove();
+            if (current - prev != dif) {
+                return false;
+            }
+            prev = current;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        Queue<Integer> q = new Queue<>();
-        q.insert(1);
-        q.insert(8);
-        q.insert(4);
-        q.insert(3);
-        q.insert(2);
-        q = removeOdd(q);
-        System.out.println(q);
-        System.out.println(exists(q, 4));
-        System.out.println(length(q));
+//        Queue<Integer> q = new Queue<>();
+//        q.insert(1);
+//        q.insert(8);
+//        q.insert(4);
+//        q.insert(3);
+//        q.insert(2);
+//        q = removeOdd(q);
+//        System.out.println(q);
+//        System.out.println(exists(q, 4));
+//        System.out.println(length(q));
+
+        Queue<Character> testQueue1 = new Queue<>();
+        testQueue1.insert('a');
+        testQueue1.insert('a');
+        testQueue1.insert('a');
+        testQueue1.insert('b');
+        testQueue1.insert('b');
+        testQueue1.insert('c');
+
+        System.out.println("Original Queue: " + testQueue1);
+        threeInARow(testQueue1);
+        System.out.println("Queue after threeInARow: " + testQueue1);
+
+        // Test for mathSeries
+        Queue<Integer> testQueue2 = new Queue<>();
+        testQueue2.insert(2);
+        testQueue2.insert(4);
+        testQueue2.insert(6);
+        testQueue2.insert(8);
+
+        System.out.println("Arithmetic series test (should be true): " + mathSeries(testQueue2));
+
+        Queue<Integer> testQueue3 = new Queue<>();
+        testQueue3.insert(3);
+        testQueue3.insert(6);
+        testQueue3.insert(10);
+        testQueue3.insert(13);
+
+        System.out.println("Non-arithmetic series test (should be false): " + mathSeries(testQueue3));
+
+        Queue<Integer> testQueue4 = new Queue<>();
+        testQueue4.insert(5);
+        System.out.println("Single element series test (should be true): " + mathSeries(testQueue4));
+
+        Queue<Integer> testQueue5 = new Queue<>();
+        System.out.println("Empty queue test (should be true): " + mathSeries(testQueue5));
     }
 
 }

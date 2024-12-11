@@ -39,17 +39,23 @@ public class Queue<T> {
     }
 
     /** פעולה מחזירה מחרוזת המייצגת את התור הנוכחי */
+//    public String toString() {
+//        if (this.isEmpty()) return "[]";
+//        this.insert(null);
+//        String s = "[";
+//        T temp = this.remove();
+//        while (temp != null) {
+//            s = s + temp + ", ";
+//            this.insert(temp);
+//            temp = this.remove();
+//        }
+//        s = s.substring(0, s.length() - 1) + "]";
+//        return s;
+//    }
+
+
+    @Override
     public String toString() {
-        if (this.isEmpty()) return "[]";
-        this.insert(null);
-        String s = "[";
-        T temp = this.remove();
-        while (temp != null) {
-            s = s + temp + ", ";
-            this.insert(temp);
-            temp = this.remove();
-        }
-        s = s.substring(0, s.length() - 1) + "]";
-        return s;
+        return this.first.toString();
     }
 }
