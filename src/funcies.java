@@ -134,6 +134,22 @@ public class funcies {
         return true;
     }
 
+    public static void ladiesFirst(Queue<Person> q)
+    {
+        Queue<Person> w = copy(q);
+        while(!w.isEmpty())
+        {
+            if(w.head().getGender()=='n')
+                System.out.println(w.remove().getName());
+            else
+                w.insert(w.remove());
+        }
+        while (w.isEmpty())
+        {
+            System.out.println(w.remove());
+        }
+    }
+
     public static void main(String[] args) {
 //        Queue<Integer> q = new Queue<>();
 //        q.insert(1);
