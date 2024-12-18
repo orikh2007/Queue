@@ -39,6 +39,28 @@ public class funcies {
         return false;
     }
 
+    public static void findTwoLargest(Queue<Integer> queue) {
+	        if (length(queue) < 2) {
+	            System.out.println("The queue must contain at least two distinct elements.");
+	            return;
+	        }
+	        Queue<Integer> tempQueue = copy(queue);
+	        Integer max1 = null, max2 = null;
+	        while (!tempQueue.isEmpty()) {
+	            Integer num = tempQueue.remove();
+	            if (max1 == null || num > max1) {
+	                max2 = max1;
+	                max1 = num;
+	            } else if ((max2 == null || num > max2) && !num.equals(max1)) {
+	                max2 = num;
+	            }
+	        }
+	        if (max1 != null && max2 != null) {
+	            System.out.println("Largest numbers are: " + max1 + " and " + max2);
+	        } else {
+	            System.out.println("The queue does not contain two distinct numbers.");
+	        }
+	    }
     public static<T> void spilledOn(Queue<T> src, Queue<T> dst)
     {
         while(!src.isEmpty())
@@ -77,8 +99,10 @@ public class funcies {
         while(!q.isEmpty())
         {
             c = q.head();
-            while(q.remove()==c)
+            while(!q.isEmpty() && q.head()==c) {
+                q.remove();
                 count++;
+            }
             if(count>=3)
             {
                 for(int i = 0; i<count; i++)
@@ -121,6 +145,27 @@ public class funcies {
 //        System.out.println(q);
 //        System.out.println(exists(q, 4));
 //        System.out.println(length(q));
+        Queue<Integer> q = new Queue<>();
+        int n;
+        Queue<Character> w = new Queue<>();
+        w.insert('a');
+        w.insert('a');
+        w.insert('a');
+        w.insert('b');
+        w.insert('c');
+        w.insert('d');
+        w.insert('e');
+        w.insert('e');
+        w.insert('e');
+        w.insert('f');
+        w.insert('g');
+        w.insert('g');
+        q.insert(1);
+        q.insert(8);
+        q.insert(4);
+        q.insert(3);
+        q.insert(2);
+        findTwoLargest(q);
 
         Queue<Character> testQueue1 = new Queue<>();
         testQueue1.insert('a');

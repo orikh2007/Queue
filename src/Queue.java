@@ -11,7 +11,7 @@ public class Queue<T> {
 
     /** פעולה המכנסת את הערך x לסוף התור הנוכחי */
     public void insert(T x) {
-        Node<T> temp = new Node<T>(x);
+        Node<T> temp = new Node<>(x);
         if (first == null)
             first = temp;
         else
